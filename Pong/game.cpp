@@ -11,6 +11,9 @@ int Game::gameScreenHeight = 480;
 //declaring game's FPS
 int Game::gameFPS = 60;
 
+//setting player controls here
+
+
 //initialize SDL and start it running
 Game::Game() {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -42,12 +45,29 @@ void Game::runGame() {
 		//For now, just quit when esc is pressed
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_KEYDOWN) {
-				if (event.key.keysym.sym == SDLK_ESCAPE) {
+				switch (event.key.keysym.sym) {
+				case SDLK_ESCAPE:
 					running = false;
+					break;
+				case SDLK_w:
+					player_1_->moveUp();
+					break;
+				case SDLK_s:
+					player_1_->moveDown();
+					break;
+				case SDLK_UP:
+					player_2_->moveUp();
+					break;
+				case SDLK_DOWN:
+					player_2_->moveDown();
+					break;
+
 				}
 			}
 		}
 		
+		player_1_->updateLocation();
+		player_2_->updateLocation();
 		drawGame(graphics);
 
 		//force game to run at no more than desired FPS

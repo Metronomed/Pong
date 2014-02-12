@@ -14,6 +14,7 @@ public:
 
 	void moveUp();
 	void moveDown();
+	void stopMoving();
 private:
 	enum Direction {
 		UP,

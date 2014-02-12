@@ -8,7 +8,7 @@
 const int paddleHeight = 160;
 const int paddleWidth = 32;
 
-const float maxVelocity = 0.4f;
+const float maxVelocity = 3.15f;
 
 const std::string paddleFile = "../content/paddle.bmp";
 
@@ -22,7 +22,7 @@ Player::Player(Graphics& graphics, int id) {
 	}
 
 	y_ = (float) (Game::gameScreenHeight - paddleHeight) / 2;
-
+	direction_ = NONE;
 	sprite_ = graphics.loadImage(paddleFile);
 }
 
@@ -36,7 +36,6 @@ void Player::draw(Graphics& graphics) {
 	SDL_Rect location;
 	location.x = (int)x_;
 	location.y = (int)y_;
-
 	graphics.blitScreen(sprite_, NULL, &location);
 }
 
@@ -62,4 +61,8 @@ void Player::moveUp() {
 
 void Player::moveDown() {
 	direction_ = DOWN;
+}
+
+void Player::stopMoving() {
+	direction_ = NONE;
 }
