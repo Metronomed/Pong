@@ -17,10 +17,13 @@ Game::Game() {
 	runGame();
 	player_1_ = NULL;
 	player_2_ = NULL;
+	ball_ = NULL;
 }
 
 //clean up SDL and quit
 Game::~Game() {
+	delete player_1_;
+	delete player_2_;
 	SDL_Quit();
 }
 
@@ -31,9 +34,7 @@ void Game::runGame() {
 	Graphics graphics;
 	player_1_ = new Player(graphics, 1);
 	player_2_ = new Player(graphics, 2);
-	//SDL_Surface* paddle = graphics.loadImage("../content/paddle.bmp");
-	//SDL_Surface* ball = graphics.loadImage("../content/ball.bmp", true);
-	
+	ball_ = new Ball(graphics);
 
 	//Game loop for each frame
 	while (running == true) {
@@ -47,9 +48,8 @@ void Game::runGame() {
 			}
 		}
 		
-		player_1_->draw(graphics);
-		player_2_->draw(graphics);
-		graphics.flip();
+		drawGame(graphics);
+
 		//force game to run at no more than desired FPS
 		const int elapsedTime = SDL_GetTicks() - frameStartTime;
 		const int frameTime = 1000 / gameFPS;
@@ -58,4 +58,12 @@ void Game::runGame() {
 		}
 
 	}
+}
+
+void Game::drawGame(Graphics& graphics) {
+	graphics.clear();
+	player_1_->draw(graphics);
+	player_2_->draw(graphics);
+	ball_->draw(graphics);
+	graphics.flip();
 }
