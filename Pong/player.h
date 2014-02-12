@@ -8,13 +8,21 @@ class Player {
 public:
 	Player(Graphics& graphics, int id);
 	~Player();
+
 	void draw(Graphics& graphics);
+	void updateLocation();
+
 	void moveUp();
 	void moveDown();
 private:
-	int x_, y_;
+	enum Direction {
+		UP,
+		DOWN,
+		NONE
+	};
+	float x_, y_;
 	int ID_;
-	float velocity_y_;
+	Direction direction_;
 	SDL_Surface* sprite_;
 };
 
