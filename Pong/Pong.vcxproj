@@ -73,10 +73,12 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README" />
