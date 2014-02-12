@@ -23,7 +23,7 @@ private:
 	float center_x_, center_y_;
 	float velocity_x_, velocity_y_;
 	SDL_Surface* sprite_;
-	void reflectOffSurface(Direction direction, int offset);
+	void reflectOffSurface(Direction direction, float offset);
 };
 
 #endif // BALL_H_

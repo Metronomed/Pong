@@ -43,7 +43,7 @@ SDL_Surface* Graphics::loadImage(const std::string& filepath, bool black_transpa
 		//do transparency
 		if (black_transparency == true) {
 			Uint32 black = SDL_MapRGB(screen_->format, 0, 0, 0);
-			SDL_SetColorKey(screen_, SDL_SRCCOLORKEY, black);
+			SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, black);
 		}
 	}
 	else {

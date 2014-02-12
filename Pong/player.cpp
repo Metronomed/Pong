@@ -68,7 +68,7 @@ void Player::stopMoving() {
 }
 
 SDL_Rect Player::getCollisionBox() {
-	SDL_Rect box = { (int)x_, (int)y_, paddleHeight, paddleWidth };
+	SDL_Rect box = { (int)x_, (int)y_, paddleWidth, paddleHeight };
 	return box;
 }
 

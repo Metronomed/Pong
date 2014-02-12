@@ -44,6 +44,9 @@
     <ClInclude Include="ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README">
