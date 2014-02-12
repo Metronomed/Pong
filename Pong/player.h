@@ -28,6 +28,7 @@ private:
 	int ID_;
 	Direction direction_;
 	SDL_Surface* sprite_;
+	int score_;
 };
 
 #endif // PLAYER_H_

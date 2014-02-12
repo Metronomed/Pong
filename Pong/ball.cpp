@@ -6,8 +6,8 @@
 const std::string ballFile = "../content/ball.bmp";
 const int ballRadius = 32 / 2;
 
-const float ball_velocity_x = 1.9f;
-const float init_ball_velocity_y = 1.3f;
+const float ball_velocity_x = 2.9f;
+const float init_ball_velocity_y = 2.3f;
 
 Ball::Ball(Graphics& graphics) {
 	sprite_ = graphics.loadImage(ballFile, true);
@@ -36,27 +36,21 @@ void Ball::draw(Graphics& graphics) {
 //changes ball velocity based on what side of the ball collided
 void Ball::reflectOffSurface(Direction direction, float offset) {
 	if (direction == UP) {
-		velocity_y_ = -velocity_y_;
+		velocity_y_ = std::abs(velocity_y_);
 		center_y_ += std::abs(offset);
-		printf("Up\n");
 	}
 	else if (direction == DOWN) {
-		velocity_y_ = -velocity_y_;
+		velocity_y_ = -std::abs(velocity_y_);
 		center_y_ -= std::abs(offset);
-		printf("Down\n");
 	}
 	else if (direction == LEFT) {
-		velocity_x_ = -velocity_x_;
+		velocity_x_ = std::abs(velocity_x_);
 		center_x_ += std::abs(offset);
-		printf("Left\n");
 	}
 	else if (direction == RIGHT) {
-		velocity_x_ = -velocity_x_;
+		velocity_x_ = -std::abs(velocity_x_);
 		center_x_ -= std::abs(offset);
-		printf("Right\n");
 	}
-	printf("x: %f y: %f\n", velocity_x_, velocity_y_);
-	printf("x: %f y: %f\n", center_x_, center_y_);
 }
 
 //check distance of rect lines from circle

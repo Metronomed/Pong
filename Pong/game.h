@@ -17,6 +17,7 @@ public:
 private:
 	void runGame();
 	void drawGame(Graphics& graphics);
+	void updateGame();
 	
 	Player* player_1_;
 	Player* player_2_;

@@ -43,10 +43,7 @@ void Game::runGame() {
 	player_2_ = new Player(graphics, 2);
 	ball_ = new Ball(graphics);
 	//setting rects for the top and bottom walls
-	SDL_Rect top_wall = { 0, -480, 640, 480 };
-	SDL_Rect bottom_wall = { 0, 480, 640, 480 };
-	SDL_Rect left_wall = { -640, 0, 640, 480 };
-	SDL_Rect right_wall = { 640, 0, 640, 480 };
+	
 
 	//Game loop for each frame
 	while (running == true) {
@@ -74,21 +71,9 @@ void Game::runGame() {
 				}
 			}
 		}
-		
-		//perform updates on the ball location
-		player_1_->updateLocation();
-		player_2_->updateLocation();
-		ball_->updateLocation();
-		SDL_Rect p1_box = player_1_->getCollisionBox();
-		SDL_Rect p2_box = player_2_->getCollisionBox();
-		ball_->detectCollision(&p1_box);
-		ball_->detectCollision(&p2_box);
-		ball_->detectCollision(&top_wall);
-		ball_->detectCollision(&bottom_wall); 
-		ball_->detectCollision(&left_wall);
-		ball_->detectCollision(&right_wall);
+				
+		updateGame();
 
-		ball_->updateLocation();
 		drawGame(graphics);
 
 		//force game to run at no more than desired FPS
@@ -108,4 +93,22 @@ void Game::drawGame(Graphics& graphics) {
 	player_2_->draw(graphics);
 	ball_->draw(graphics);
 	graphics.flip();
+}
+
+void Game::updateGame() {
+	player_1_->updateLocation();
+	player_2_->updateLocation();
+	ball_->updateLocation();
+	SDL_Rect p1_box = player_1_->getCollisionBox();
+	SDL_Rect p2_box = player_2_->getCollisionBox();
+	SDL_Rect top_wall = { 0, -480, 640, 480 };
+	SDL_Rect bottom_wall = { 0, 480, 640, 480 };
+	SDL_Rect left_wall = { -640, 0, 640, 480 };
+	SDL_Rect right_wall = { 640, 0, 640, 480 };
+	ball_->detectCollision(&p1_box);
+	ball_->detectCollision(&p2_box);
+	ball_->detectCollision(&top_wall);
+	ball_->detectCollision(&bottom_wall);
+	ball_->detectCollision(&left_wall);
+	ball_->detectCollision(&right_wall);
 }
