@@ -81,6 +81,10 @@
   <ItemGroup>
     <None Include="..\README" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\content\ball.bmp" />
+    <Image Include="..\content\paddle.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

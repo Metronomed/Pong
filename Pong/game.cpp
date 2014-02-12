@@ -26,6 +26,8 @@ void Game::runGame() {
 	bool running = true;
 	SDL_Event event;
 	Graphics graphics;
+	SDL_Surface* paddle = graphics.loadImage("../content/paddle.bmp");
+	SDL_Surface* ball = graphics.loadImage("../content/ball.bmp", true);
 	
 	//Game loop for each frame
 	while (running == true) {
@@ -38,7 +40,11 @@ void Game::runGame() {
 				}
 			}
 		}
-
+		SDL_Rect output;
+		output.x = 0;
+		output.y = 0;
+		graphics.blitScreen(paddle, NULL, &output);
+		graphics.flip();
 		//force game to run at no more than desired FPS
 		const int elapsedTime = SDL_GetTicks() - frameStartTime;
 		const int frameTime = 1000 / gameFPS;

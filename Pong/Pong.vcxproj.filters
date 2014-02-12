@@ -38,4 +38,12 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\content\ball.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\content\paddle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
