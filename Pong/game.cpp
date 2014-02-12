@@ -12,7 +12,10 @@ int Game::gameScreenHeight = 480;
 int Game::gameFPS = 60;
 
 //setting player controls here
-
+const SDLKey player_1_up = SDLK_w;
+const SDLKey player_1_down = SDLK_s;
+const SDLKey player_2_up = SDLK_UP;
+const SDLKey player_2_down = SDLK_DOWN;
 
 //initialize SDL and start it running
 Game::Game() {
@@ -49,16 +52,16 @@ void Game::runGame() {
 				case SDLK_ESCAPE:
 					running = false;
 					break;
-				case SDLK_w:
+				case player_1_up:
 					player_1_->moveUp();
 					break;
-				case SDLK_s:
+				case player_1_down:
 					player_1_->moveDown();
 					break;
-				case SDLK_UP:
+				case player_2_up:
 					player_2_->moveUp();
 					break;
-				case SDLK_DOWN:
+				case player_2_down:
 					player_2_->moveDown();
 					break;
 
