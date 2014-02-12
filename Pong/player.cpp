@@ -66,3 +66,20 @@ void Player::moveDown() {
 void Player::stopMoving() {
 	direction_ = NONE;
 }
+
+SDL_Rect Player::getCollisionBox() {
+	SDL_Rect box = { (int)x_, (int)y_, paddleHeight, paddleWidth };
+	return box;
+}
+
+float Player::getYVelocity() {
+	if (direction_ == UP) {
+		return -maxVelocity;
+	}
+	else if (direction_ == DOWN) {
+		return maxVelocity;
+	}
+	else {
+		return 0.0f;
+	}
+}

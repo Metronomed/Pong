@@ -35,6 +35,7 @@ Game::~Game() {
 
 // Run the game loop
 void Game::runGame() {
+	//variable initializations
 	bool running = true;
 	SDL_Event event;
 	Graphics graphics;
@@ -69,8 +70,15 @@ void Game::runGame() {
 			}
 		}
 		
+		//perform updates on the ball location
 		player_1_->updateLocation();
 		player_2_->updateLocation();
+		ball_->updateLocation();
+		SDL_Rect p1_box = player_1_->getCollisionBox();
+		SDL_Rect p2_box = player_2_->getCollisionBox();
+
+
+		ball_->updateLocation();
 		drawGame(graphics);
 
 		//force game to run at no more than desired FPS
@@ -83,6 +91,7 @@ void Game::runGame() {
 	}
 }
 
+//draw everything to the screen
 void Game::drawGame(Graphics& graphics) {
 	graphics.clear();
 	player_1_->draw(graphics);

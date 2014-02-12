@@ -3,6 +3,7 @@
 
 class Graphics;
 struct SDL_Surface;
+struct SDL_Rect;
 
 class Player {
 public:
@@ -15,6 +16,8 @@ public:
 	void moveUp();
 	void moveDown();
 	void stopMoving();
+	SDL_Rect getCollisionBox();
+	float getYVelocity();
 private:
 	enum Direction {
 		UP,
