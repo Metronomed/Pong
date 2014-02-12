@@ -8,6 +8,7 @@ public:
 
 	static int gameScreenWidth;
 	static int gameScreenHeight;
+	static int gameFPS;
 private:
 	void runGame();
 };
