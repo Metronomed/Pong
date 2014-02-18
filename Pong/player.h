@@ -25,6 +25,7 @@ private:
 		NONE
 	};
 	float x_, y_;
+	float velocity_y_;
 	int ID_;
 	Direction direction_;
 	SDL_Surface* sprite_;
