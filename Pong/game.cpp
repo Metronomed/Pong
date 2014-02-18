@@ -67,7 +67,23 @@ void Game::runGame() {
 				case player_2_down:
 					player_2_->moveDown();
 					break;
+				}
+			}
 
+			if (event.type == SDL_KEYUP) {
+				switch (event.key.keysym.sym) {
+				case player_1_up:
+					player_1_->stopMoving();
+					break;
+				case player_1_down:
+					player_1_->stopMoving();
+					break;
+				case player_2_up:
+					player_2_->stopMoving();
+					break;
+				case player_2_down:
+					player_2_->stopMoving();
+					break;
 				}
 			}
 		}
