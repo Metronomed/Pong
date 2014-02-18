@@ -3,6 +3,7 @@
 #include "graphics.h"
 #include <SDL.h>
 
+
 const std::string ballFile = "../content/ball.bmp";
 const int ballRadius = 32 / 2;
 
@@ -57,14 +58,27 @@ void Ball::reflectOffSurface(Direction direction, float offset) {
 //behavior not as good if it hits a corner
 //maybe add cases for when it does hit a corner
 void Ball::detectCollision(SDL_Rect* other_rect) {
-	//left side of the circle = right side of rect
+	//corner cases
+	//top right, bottom right, bottom left, top left
+	float rect_corner_x[4] = { other_rect->x + other_rect->w, other_rect->x + other_rect->w, other_rect->x, other_rect->x };
+	float rect_corner_y[4] = { other_rect->y, other_rect->y + other_rect->h, other_rect->y + other_rect->h, other_rect->y };
+	for (int corner = 0; corner < 4; corner++) {
+		float dx = std::abs(center_x_ - rect_corner_x[corner]);
+		float dy = std::abs(center_y_ - rect_corner_y[corner]);
+		if (ballRadius * ballRadius >= dx * dx + dy * dy) {
+			reflectOffCorner(corner, dx, dy);
+		}
+	}
+
+	//edge cases
+	//right side of the circle = left side of rect
 	float delta_x = center_x_ - other_rect->x;
 	if (delta_x * delta_x <= ballRadius * ballRadius) {
 		if ((center_y_ >= other_rect->y) && (center_y_ <= other_rect->y + other_rect->h)) { //if the center is within the y-bounds of other
 			reflectOffSurface(RIGHT, delta_x);
 		}
 	}
-
+	//left side of the circle = right side of rect
 	delta_x = center_x_ - (other_rect->x + other_rect->w);
 	if (delta_x * delta_x <= ballRadius * ballRadius) {
 		if ((center_y_ >= other_rect->y) && (center_y_ <= other_rect->y + other_rect->h)) { //if the center is within the y-bounds of other
@@ -72,17 +86,50 @@ void Ball::detectCollision(SDL_Rect* other_rect) {
 		}
 	}
 
+	//bottom side of the circle = top side of rect
 	float delta_y = center_y_ - other_rect->y;
 	if (delta_y * delta_y <= ballRadius * ballRadius) {
-		if ((center_x_ >= other_rect->x) && (center_x_ <= other_rect->x + other_rect->w)) { //if the center is within the w-bounds of other
+		if ((center_x_ >= other_rect->x) && (center_x_ <= other_rect->x + other_rect->w)) { //if the center is within the x-bounds of other
 			reflectOffSurface(DOWN, delta_y);
 		}
 	}
 
+	//top side of the circle = bottom side of rect
 	delta_y = center_y_ - (other_rect->y + other_rect->h);
 	if (delta_y * delta_y <= ballRadius * ballRadius) {
-		if ((center_x_ >= other_rect->x) && (center_x_ <= other_rect->x + other_rect->w)) { //if the center is within the w-bounds of other
+		if ((center_x_ >= other_rect->x) && (center_x_ <= other_rect->x + other_rect->w)) { //if the center is within the x-bounds of other
 			reflectOffSurface(UP, delta_y);
 		}
+	}
+}
+
+void Ball::reflectOffCorner(int corner, float offset_x, float offset_y) {
+	switch (corner) {
+	case 0: //topright
+		velocity_x_ = std::abs(velocity_x_);
+		velocity_y_ = -std::abs(velocity_y_);
+		center_x_ += offset_x;
+		center_y_ -= offset_y;
+		break;
+	case 1: //bottomright
+		velocity_x_ = std::abs(velocity_x_);
+		velocity_y_ = std::abs(velocity_y_);
+		center_x_ += offset_x;
+		center_y_ += offset_y;
+		break;
+	case 2: //bottomleft
+		velocity_x_ = -std::abs(velocity_x_);
+		velocity_y_ = std::abs(velocity_y_);
+		center_x_ -= offset_x;
+		center_y_ += offset_y;
+		break;
+	case 3: //topleft
+		velocity_x_ = -std::abs(velocity_x_);
+		velocity_y_ = -std::abs(velocity_y_);
+		center_x_ -= offset_x;
+		center_y_ -= offset_y;
+		break;
+	default:
+		break;
 	}
 }

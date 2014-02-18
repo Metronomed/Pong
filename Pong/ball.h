@@ -24,6 +24,7 @@ private:
 	float velocity_x_, velocity_y_;
 	SDL_Surface* sprite_;
 	void reflectOffSurface(Direction direction, float offset);
+	void reflectOffCorner(int corner, float offset_x, float offset_y);
 };
 
 #endif // BALL_H_

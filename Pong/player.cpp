@@ -24,7 +24,7 @@ Player::Player(Graphics& graphics, int id) {
 	y_ = (float) (Game::gameScreenHeight - paddleHeight) / 2;
 	direction_ = NONE;
 
-	score = 0;
+	score_ = 0;
 
 	sprite_ = graphics.loadImage(paddleFile);
 }
