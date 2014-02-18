@@ -12,7 +12,7 @@ public:
 
 	void updateLocation();
 	void draw(Graphics& graphics);
-	void detectCollision(SDL_Rect* other_rect);
+	void detectCollision(SDL_Rect* other_rect, float added_velocity=0.0f);
 private:
 	enum Direction {
 		UP,

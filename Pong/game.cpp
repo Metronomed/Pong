@@ -121,8 +121,8 @@ void Game::updateGame() {
 	SDL_Rect bottom_wall = { 0, 480, 640, 480 };
 	SDL_Rect left_wall = { -640, 0, 640, 480 };
 	SDL_Rect right_wall = { 640, 0, 640, 480 };
-	ball_->detectCollision(&p1_box);
-	ball_->detectCollision(&p2_box);
+	ball_->detectCollision(&p1_box, player_1_->getYVelocity());
+	ball_->detectCollision(&p2_box, player_2_->getYVelocity());
 	ball_->detectCollision(&top_wall);
 	ball_->detectCollision(&bottom_wall);
 	ball_->detectCollision(&left_wall);

@@ -10,6 +10,8 @@ const int ballRadius = 32 / 2;
 const float ball_velocity_x = 2.9f;
 const float init_ball_velocity_y = 2.3f;
 
+const float spin_factor = 0.5f;
+
 Ball::Ball(Graphics& graphics) {
 	sprite_ = graphics.loadImage(ballFile, true);
 	center_x_ = 320.f;
@@ -57,7 +59,7 @@ void Ball::reflectOffSurface(Direction direction, float offset) {
 //check distance of rect lines from circle
 //behavior not as good if it hits a corner
 //maybe add cases for when it does hit a corner
-void Ball::detectCollision(SDL_Rect* other_rect) {
+void Ball::detectCollision(SDL_Rect* other_rect, float added_velocity = 0.0f) {
 	//corner cases
 	//top right, bottom right, bottom left, top left
 	float rect_corner_x[4] = { other_rect->x + other_rect->w, other_rect->x + other_rect->w, other_rect->x, other_rect->x };

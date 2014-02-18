@@ -1,4 +1,10 @@
+====
 PONG
-By: Alvin Chua (C) 2014
+====
+By: Alvin Chua (C) 2014.  MIT license.
 
-Super simple Pong clone made with SDL.
+Super simple Pong clone made with SDL. Borrowed some overall game organization/design from "Reconstructing Cave Story" by Christopher Hebert (can be found at https://github.com/chebert/cavestory-screencast).
+
+CONTROLS:
+P1: W/S
+P2: Up/Down
