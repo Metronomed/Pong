@@ -52,6 +52,9 @@
     <None Include="..\README">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\LICENSE.md">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\content\ball.bmp">

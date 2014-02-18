@@ -59,11 +59,11 @@ void Ball::reflectOffSurface(Direction direction, float offset) {
 //check distance of rect lines from circle
 //behavior not as good if it hits a corner
 //maybe add cases for when it does hit a corner
-void Ball::detectCollision(SDL_Rect* other_rect, float added_velocity = 0.0f) {
+void Ball::detectCollision(SDL_Rect* other_rect, float added_velocity) {
 	//corner cases
 	//top right, bottom right, bottom left, top left
-	float rect_corner_x[4] = { other_rect->x + other_rect->w, other_rect->x + other_rect->w, other_rect->x, other_rect->x };
-	float rect_corner_y[4] = { other_rect->y, other_rect->y + other_rect->h, other_rect->y + other_rect->h, other_rect->y };
+	int rect_corner_x[4] = { other_rect->x + other_rect->w, other_rect->x + other_rect->w, other_rect->x, other_rect->x };
+	int rect_corner_y[4] = { other_rect->y, other_rect->y + other_rect->h, other_rect->y + other_rect->h, other_rect->y };
 	for (int corner = 0; corner < 4; corner++) {
 		float dx = std::abs(center_x_ - rect_corner_x[corner]);
 		float dy = std::abs(center_y_ - rect_corner_y[corner]);
